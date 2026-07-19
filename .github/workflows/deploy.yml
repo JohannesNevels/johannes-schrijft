@@ -1,0 +1,54 @@
+name: Deploy naar GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Rechten die GitHub Pages nodig heeft.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Eén deploy tegelijk; nieuwere pushes annuleren lopende runs niet halverwege.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Bouw de site
+        # De site draait op het eigen domein johannesschrijft.nl (in de root),
+        # dus geen PATH_PREFIX nodig. Zou je 'm toch op
+        # <gebruiker>.github.io/<repo>/ draaien, zet dan:
+        #   env:
+        #     PATH_PREFIX: "/johannes-schrijft/"
+        run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

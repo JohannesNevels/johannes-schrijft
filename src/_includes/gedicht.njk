@@ -1,0 +1,17 @@
+---
+layout: base.njk
+---
+<article class="poem">
+  <h1 class="poem__title">{{ title }}</h1>
+  <hr class="rule" />
+  <div class="poem__body">
+    {{ content | safe }}
+  </div>
+  <hr class="rule" />
+  <nav class="poem-nav" aria-label="Bladeren door de gedichten">
+    {%- set prev = collections.gedichten | getPreviousCollectionItem -%}
+    {%- set next = collections.gedichten | getNextCollectionItem -%}
+    {% if prev %}<a class="poem-nav__prev" href="{{ prev.url | url }}">← vorig gedicht</a>{% else %}<span></span>{% endif %}
+    {% if next %}<a class="poem-nav__next" href="{{ next.url | url }}">volgend gedicht →</a>{% else %}<span></span>{% endif %}
+  </nav>
+</article>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {%- set metaTitle = pageTitle if pageTitle else (title + " — " + site.name if title else site.name) -%}
+    {%- set metaDesc = description if description else site.tagline -%}
+    {%- set canonical = site.url + (page.url | url) -%}
+
+    <title>{{ metaTitle }}</title>
+    <meta name="description" content="{{ metaDesc }}" />
+    <meta name="author" content="{{ site.author }}" />
+    <link rel="canonical" href="{{ canonical }}" />
+
+    <!-- Open Graph / social sharing -->
+    <meta property="og:type" content="{{ 'article' if title else 'website' }}" />
+    <meta property="og:site_name" content="{{ site.name }}" />
+    <meta property="og:title" content="{{ metaTitle }}" />
+    <meta property="og:description" content="{{ metaDesc }}" />
+    <meta property="og:url" content="{{ canonical }}" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{ metaTitle }}" />
+    <meta name="twitter:description" content="{{ metaDesc }}" />
+
+    <link rel="icon" href="{{ '/favicon.svg' | url }}" type="image/svg+xml" />
+    <link rel="alternate" type="application/atom+xml" title="{{ site.name }}" href="{{ '/feed.xml' | url }}" />
+
+    <link rel="preload" href="{{ '/fonts/CourierPrime-Regular.woff2' | url }}" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="{{ '/css/style.css' | url }}" />
+  </head>
+  <body class="{{ bodyClass }}">
+    <a class="skip-link" href="#inhoud">Naar de inhoud</a>
+
+    <main id="inhoud">
+      {{ content | safe }}
+    </main>
+
+    <footer class="footer">
+      <a href="{{ '/gedichten/' | url }}">alle gedichten</a>
+      <span aria-hidden="true">·</span>
+      <a href="{{ '/over/' | url }}">over</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://instagram.com/{{ site.instagram }}" rel="me noopener">instagram</a>
+    </footer>
+  </body>
+</html>

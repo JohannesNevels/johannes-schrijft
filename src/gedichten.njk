@@ -1,0 +1,18 @@
+---
+layout: base.njk
+pageTitle: "alle gedichten — Johannes schrijft"
+description: "Alle gedichten van Johannes, rustig bij elkaar."
+---
+<section class="overview">
+  <h1 class="overview__title">alle gedichten</h1>
+  <ul class="overview__list">
+    {%- for gedicht in collections.gedichten | reverse %}
+    <li>
+      <a href="{{ gedicht.url | url }}">
+        <span class="overview__naam">{{ gedicht.data.title }}</span>
+        <span class="overview__date">{{ gedicht.date | datum }}</span>
+      </a>
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
