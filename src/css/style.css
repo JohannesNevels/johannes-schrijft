@@ -256,25 +256,52 @@ a:focus-visible {
   white-space: nowrap;
 }
 
-/* "Nieuwe gedichten" block on the homepage ------------------------------ */
+/* "Nieuwe gedichten" block on the homepage — a quiet, centered contents
+   list, not a bordered index. --------------------------------------------- */
 .recent {
   max-width: var(--measure);
   margin: 0 auto;
   padding: 0 1.25rem 5rem;
+  text-align: center;
 }
 
-.recent__title {
-  margin: 2.5rem 0;
-  font-weight: 700;
-  font-size: 1.15rem;
+.recent__label {
+  margin: 2rem 0 3rem;
+  font-size: 0.8rem;
   text-transform: lowercase;
-  letter-spacing: 0.12em;
-  text-align: center;
+  letter-spacing: 0.25em;
+  color: var(--muted);
+}
+
+.recent__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recent__item {
+  margin: 0 0 2.25rem;
+}
+
+.recent__link {
+  font-size: 1.3rem;
+  border-bottom-color: transparent;
+}
+
+.recent__link:hover,
+.recent__link:focus-visible {
+  border-bottom-color: var(--rule);
+}
+
+.recent__date {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 
 .recent__all {
-  margin: 2rem 0 0;
-  text-align: center;
+  margin: 3.25rem 0 0;
   font-size: 0.9rem;
 }
 

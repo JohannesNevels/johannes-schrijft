@@ -13,23 +13,21 @@ layout: base.njk
 </article>
 
 {%- if collections.recent.length %}
-<section class="recent">
+<nav class="recent" aria-label="Nieuwe gedichten">
   <hr class="rule" />
-  <h2 class="recent__title">nieuwe gedichten</h2>
-  <ul class="overview__list">
+  <p class="recent__label">nieuwe gedichten</p>
+  <ul class="recent__list">
     {%- for gedicht in collections.recent %}
     {%- if loop.index <= 5 %}
-    <li>
-      <a href="{{ gedicht.url | url }}">
-        <span class="overview__naam">{{ gedicht.data.title }}</span>
-        <span class="overview__date">{{ gedicht.date | datum }}</span>
-      </a>
+    <li class="recent__item">
+      <a class="recent__link" href="{{ gedicht.url | url }}">{{ gedicht.data.title }}</a>
+      <span class="recent__date">{{ gedicht.date | datum }}</span>
     </li>
     {%- endif %}
     {%- endfor %}
   </ul>
   <p class="recent__all"><a href="{{ '/gedichten/' | url }}">alle gedichten →</a></p>
-</section>
+</nav>
 {%- endif %}
 
 <script>
