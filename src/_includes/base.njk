@@ -33,6 +33,10 @@
   <body class="{{ bodyClass }}">
     <a class="skip-link" href="#inhoud">Naar de inhoud</a>
 
+    <header class="masthead">
+      <a href="{{ '/' | url }}">{{ site.name }}</a>
+    </header>
+
     <main id="inhoud">
       {{ content | safe }}
     </main>

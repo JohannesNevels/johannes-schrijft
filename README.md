@@ -1,7 +1,8 @@
-# Johannes schrijft
+# versregel
 
 Een rustige, boekachtige poëziesite. Geen menu, geen zijbalk, geen pop-ups —
-alleen woorden. De homepage opent met _alles goed?_; wie scrolt, leest verder.
+alleen woorden. De homepage opent met _alles goed?_ — het sterkste gedicht als
+groet — en loopt door naar het nieuwste werk.
 
 Gebouwd met [Eleventy](https://www.11ty.dev/). Gedichten zijn losse
 Markdown-bestanden; elk gedicht krijgt zijn eigen pagina.
@@ -61,27 +62,23 @@ instellen:
    **GitHub Actions**.
 3. Klaar. Elke push naar `main` bouwt en publiceert de site automatisch.
 
-### Eigen domein: johannesschrijft.nl
+### Eigen domein: versregel.nl
 
-De site is ingesteld op het eigen domein **johannesschrijft.nl** (draait in de
-root, dus geen `PATH_PREFIX`). Wat er al klaarstaat:
+De site draait op het eigen domein **versregel.nl** (in de root, dus geen
+`PATH_PREFIX`). Wat er voor is ingesteld:
 
-- [`src/static/CNAME`](src/static/CNAME) met `johannesschrijft.nl` (wordt naar de
-  root van de site gekopieerd — GitHub Pages leest dit uit).
+- [`src/static/CNAME`](src/static/CNAME) met `versregel.nl` (wordt naar de root
+  van de site gekopieerd — GitHub Pages leest dit uit).
 - `url` in [`src/_data/site.js`](src/_data/site.js) staat op
-  `https://johannesschrijft.nl`.
+  `https://versregel.nl`.
+- DNS bij de registrar: 4× **A-record** op de apex naar `185.199.108.153`,
+  `185.199.109.153`, `185.199.110.153`, `185.199.111.153`, en een **CNAME** voor
+  `www` naar `johannesnevels.github.io`.
+- In de repo **Settings → Pages**: custom domain `versregel.nl` + **Enforce HTTPS**.
 
-Nog te doen bij je domeinprovider (DNS), eenmalig:
-
-- **A-records** voor `johannesschrijft.nl` naar de GitHub Pages-adressen:
-  `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`.
-- Een **CNAME-record** voor `www` naar `<gebruiker>.github.io`.
-- Zet daarna in de repo **Settings → Pages** het custom domain op
-  `johannesschrijft.nl` en vink **Enforce HTTPS** aan.
-
-Zou je 'm toch (tijdelijk) op `https://<gebruiker>.github.io/johannes-schrijft/`
-willen draaien, zet dan `PATH_PREFIX: "/johannes-schrijft/"` terug in de
-workflow (zie het commentaar daar) en pas `url` aan.
+Zou je 'm ooit tijdelijk op `https://<gebruiker>.github.io/johannes-schrijft/`
+willen previewen, zet dan `PATH_PREFIX: "/johannes-schrijft/"` in de workflow (zie
+het commentaar daar) en haal `src/static/CNAME` weg.
 
 ## Aanpassen
 

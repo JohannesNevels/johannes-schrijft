@@ -1,20 +1,18 @@
 ---
 layout: base.njk
+pageTitle: "versregel — gedichten van johannes"
 ---
-<section class="hero">
-  <h1 class="hero__title">alles goed?</h1>
-  <p class="hero__hint" aria-hidden="true">scroll ↓</p>
-</section>
-
-<article class="poem poem--home reveal">
+<article class="poem poem--home">
+  <h1 class="home-question">alles goed?</h1>
+  <hr class="rule" />
   <div class="poem__body">
     {{ content | safe }}
   </div>
+  <hr class="rule" />
 </article>
 
 {%- if collections.recent.length %}
 <nav class="recent" aria-label="Nieuwe gedichten">
-  <hr class="rule" />
   <p class="recent__label">nieuwe gedichten</p>
   <ul class="recent__list">
     {%- for gedicht in collections.recent %}
@@ -29,24 +27,3 @@ layout: base.njk
   <p class="recent__all"><a href="{{ '/gedichten/' | url }}">alle gedichten →</a></p>
 </nav>
 {%- endif %}
-
-<script>
-  (function () {
-    var el = document.querySelector(".reveal");
-    if (!el) return;
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce || !("IntersectionObserver" in window)) {
-      el.classList.add("is-visible");
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          el.classList.add("is-visible");
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.15 });
-    io.observe(el);
-  })();
-</script>

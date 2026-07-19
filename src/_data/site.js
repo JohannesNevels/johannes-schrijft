@@ -1,9 +1,9 @@
 export default {
-  name: "johannes schrijft",
+  name: "versregel",
   author: "Johannes Nevels",
   tagline: "gedichten van johannes.",
   // Full site URL (used for canonical links, sitemap, social sharing).
-  url: "https://johannesschrijft.nl",
+  url: "https://versregel.nl",
   lang: "nl",
   // Instagram handle for the footer link (without the @).
   instagram: "johannesnevels",

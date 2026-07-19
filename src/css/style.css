@@ -111,39 +111,34 @@ a:focus-visible {
   z-index: 10;
 }
 
-/* Hero ------------------------------------------------------------------ */
-.hero {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* Masthead — quiet wordmark, always links home. One word, no menu. -------- */
+.masthead {
   text-align: center;
-  padding: 2rem 1.25rem;
-  position: relative;
+  padding: 2rem 1.25rem 0;
 }
 
-.hero__title {
+.masthead a {
+  font-size: 0.85rem;
+  text-transform: lowercase;
+  letter-spacing: 0.28em;
+  color: var(--muted);
+  border-bottom-color: transparent;
+}
+
+.masthead a:hover,
+.masthead a:focus-visible {
+  color: var(--ink);
+  border-bottom-color: transparent;
+}
+
+/* Homepage greeting — "alles goed?" as an oversized poem title ----------- */
+.home-question {
   margin: 0;
   font-weight: 400;
-  font-size: clamp(2.4rem, 1.6rem + 6vw, 5rem);
+  font-size: clamp(2.2rem, 1.5rem + 4.5vw, 3.6rem);
   letter-spacing: 0.01em;
-  line-height: 1.1;
-}
-
-.hero__hint {
-  position: absolute;
-  bottom: 2rem;
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  animation: drift 2.6s ease-in-out infinite;
-}
-
-@keyframes drift {
-  0%, 100% { transform: translateY(0); opacity: 0.55; }
-  50% { transform: translateY(0.35rem); opacity: 1; }
+  line-height: 1.15;
+  text-align: center;
 }
 
 /* Poem ------------------------------------------------------------------ */
@@ -154,11 +149,7 @@ a:focus-visible {
 }
 
 .poem--home {
-  min-height: 90svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-top: 2rem;
+  padding-top: 2.5rem;
 }
 
 .poem__title {
@@ -341,26 +332,7 @@ a:focus-visible {
   opacity: 0.6;
 }
 
-/* Scroll-in reveal ------------------------------------------------------ */
-.reveal {
-  opacity: 0;
-  transform: translateY(1.25rem);
-  transition: opacity 1.2s ease, transform 1.2s ease;
-}
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .hero__hint {
-    animation: none;
-  }
   * {
     scroll-behavior: auto !important;
   }
