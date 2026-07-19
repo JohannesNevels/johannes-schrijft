@@ -30,11 +30,12 @@ jobs:
       - run: npm ci
 
       - name: Bouw de site
-        # TIJDELIJK: preview op https://johannesnevels.github.io/johannes-schrijft/
-        # zolang versregel.nl nog niet resolvet. Zodra de DNS werkt: deze env
-        # weghalen (root-build) én src/static/CNAME (versregel.nl) terugzetten.
-        env:
-          PATH_PREFIX: "/johannes-schrijft/"
+        # De site draait op het eigen domein versregel.nl (in de root), dus geen
+        # PATH_PREFIX. Zou je 'm ooit tijdelijk op <gebruiker>.github.io/<repo>/
+        # willen previewen, zet dan:
+        #   env:
+        #     PATH_PREFIX: "/johannes-schrijft/"
+        #   en haal src/static/CNAME weg.
         run: npm run build
 
       - uses: actions/configure-pages@v5
