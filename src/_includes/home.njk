@@ -10,13 +10,27 @@ layout: base.njk
   <div class="poem__body">
     {{ content | safe }}
   </div>
-  <hr class="rule" />
-  <nav class="poem-nav" aria-label="Bladeren door de gedichten">
-    <span></span>
-    {%- set next = collections.gedichten | getNextCollectionItem -%}
-    {% if next %}<a class="poem-nav__next" href="{{ next.url | url }}">volgend gedicht →</a>{% endif %}
-  </nav>
 </article>
+
+{%- if collections.recent.length %}
+<section class="recent">
+  <hr class="rule" />
+  <h2 class="recent__title">nieuwe gedichten</h2>
+  <ul class="overview__list">
+    {%- for gedicht in collections.recent %}
+    {%- if loop.index <= 5 %}
+    <li>
+      <a href="{{ gedicht.url | url }}">
+        <span class="overview__naam">{{ gedicht.data.title }}</span>
+        <span class="overview__date">{{ gedicht.date | datum }}</span>
+      </a>
+    </li>
+    {%- endif %}
+    {%- endfor %}
+  </ul>
+  <p class="recent__all"><a href="{{ '/gedichten/' | url }}">alle gedichten →</a></p>
+</section>
+{%- endif %}
 
 <script>
   (function () {

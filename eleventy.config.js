@@ -20,6 +20,15 @@ export default function (eleventyConfig) {
     api.getFilteredByTag("gedichten").sort((a, b) => a.date - b.date)
   );
 
+  // The newest poems first, excluding the opening poem (which lives on the
+  // homepage at "/"). Used for the "nieuwe gedichten" block on the homepage.
+  eleventyConfig.addCollection("recent", (api) =>
+    api
+      .getFilteredByTag("gedichten")
+      .filter((item) => item.url !== "/")
+      .sort((a, b) => b.date - a.date)
+  );
+
   // Readable Dutch date, e.g. "3 januari 2026".
   eleventyConfig.addFilter("datum", (value) =>
     new Intl.DateTimeFormat("nl-NL", {

@@ -256,6 +256,39 @@ a:focus-visible {
   white-space: nowrap;
 }
 
+/* "Nieuwe gedichten" block on the homepage ------------------------------ */
+.recent {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.25rem 5rem;
+}
+
+.recent__title {
+  margin: 2.5rem 0;
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-transform: lowercase;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+.recent__all {
+  margin: 2rem 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.recent__all a {
+  color: var(--muted);
+  border-bottom-color: transparent;
+}
+
+.recent__all a:hover,
+.recent__all a:focus-visible {
+  color: var(--ink);
+  border-bottom-color: var(--rule);
+}
+
 /* Footer ---------------------------------------------------------------- */
 .footer {
   flex-shrink: 0;
