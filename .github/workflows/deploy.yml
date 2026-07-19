@@ -30,11 +30,11 @@ jobs:
       - run: npm ci
 
       - name: Bouw de site
-        # De site draait op het eigen domein johannesschrijft.nl (in de root),
-        # dus geen PATH_PREFIX nodig. Zou je 'm toch op
-        # <gebruiker>.github.io/<repo>/ draaien, zet dan:
-        #   env:
-        #     PATH_PREFIX: "/johannes-schrijft/"
+        # TIJDELIJK: preview op https://johannesnevels.github.io/johannes-schrijft/
+        # daarom staat PATH_PREFIX op de repositorynaam. Zodra johannesschrijft.nl
+        # via DNS werkt: deze env weghalen (root) én src/static/CNAME terugzetten.
+        env:
+          PATH_PREFIX: "/johannes-schrijft/"
         run: npm run build
 
       - uses: actions/configure-pages@v5
