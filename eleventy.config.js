@@ -1,4 +1,7 @@
-import { feedPlugin } from "@11ty/eleventy-plugin-rss";
+import {
+  dateToRfc3339,
+  getNewestCollectionItemDate,
+} from "@11ty/eleventy-plugin-rss";
 
 export default function (eleventyConfig) {
   // Copy static assets straight through to the build.
@@ -36,19 +39,12 @@ export default function (eleventyConfig) {
     return text.length > 160 ? text.slice(0, 157) + "…" : text;
   });
 
-  // RSS/Atom feed so readers can subscribe.
-  eleventyConfig.addPlugin(feedPlugin, {
-    type: "atom",
-    outputPath: "/feed.xml",
-    collection: { name: "gedichten", limit: 0 },
-    metadata: {
-      language: "nl",
-      title: "johannes schrijft",
-      subtitle: "gedichten van johannes.",
-      base: "https://johannesschrijft.nl/",
-      author: { name: "Johannes Nevels" },
-    },
-  });
+  // Date helpers for the Atom feed + sitemap. Imported directly (not via the
+  // RSS plugin) on purpose: the RSS feedPlugin registers the HTML-base URL
+  // transform twice, which double-applies pathPrefix to every root-relative
+  // link. Registering just the helpers keeps a single `url` filter in charge.
+  eleventyConfig.addFilter("dateToRfc3339", dateToRfc3339);
+  eleventyConfig.addFilter("getNewestCollectionItemDate", getNewestCollectionItemDate);
 
   return {
     // Set PATH_PREFIX at build time for GitHub project pages
